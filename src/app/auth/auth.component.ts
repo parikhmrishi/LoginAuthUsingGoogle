@@ -12,25 +12,28 @@ import { IUserDetails } from '../model/IUserDetail'
 export class AuthComponent implements OnInit {
 
   private user: SocialUser;
-  response: IUserDetails
+  response: IUserDetails;
   constructor(private authService: AuthService, private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
-    if (localStorage.getItem("1") === null ) {
+    if (localStorage.getItem("userId") === null) {
       this.authService.authState.subscribe((user) => {
         this.user = user;
+        this.router.navigate(['auth']);
       });
-    } else {
+    }
+    else {
       this.router.navigate(['home']);
     }
   }
 
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(() => {
-      //this.dataService.setData(this.user);
+      console.log(this.user);
       localStorage.setItem("userId", this.user.id);
       this.router.navigate(['home']);
-      this.dataService.setUser(this.user.id, this.user.name, this.user.email, "2" );
+      this.dataService.setData(this.user);
+      //this.dataService.setUser(this.user.id, this.user.name, this.user.email, "2");
     });
   }
 }

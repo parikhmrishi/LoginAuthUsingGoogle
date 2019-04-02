@@ -16,31 +16,30 @@ export class DataService {
   private data;
   response: IUserDetails
 
-  setData(data){
+  setData(data) {
     this.data = data;
   }
 
-  // getData(){
-  //   let temp = this.data;
-  //   return temp;
-  // }
+  getData(){
+    let temp = this.data;
+    return temp;
+  }
 
   getUser() {
     return this.http.get('../assets/userDetail.json')
   }
 
-  // getUserDetail(id) {
-  //   return this.http.get('https://jsonplaceholder.typicode.com/todos?id=' + id)
-  // }
-
-
-  setUser(id, name, email, roleId) {
+  setUser(id: any, name: string, email: string, roleId: string) {
     this.response.id = id;
     this.response.name = name;
     this.response.email = email;
     this.response.roleId = roleId;
-    
-    return this.http.post('../assets/userDetail.json',this.response);
+
+    this.http.post('../assets/userDetail.json', this.response).subscribe(
+      (val) => {
+        console.log("POST call successful value returned in body",
+          val);
+      });
   }
 
 

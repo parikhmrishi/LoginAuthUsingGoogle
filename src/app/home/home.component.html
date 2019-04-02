@@ -1,4 +1,28 @@
 <p>
   home works!
 </p>
-<button class="btn mx-1 div-align btn-dimention text-center" (click)="signOut()"><span class="center bold font-white">Logout</span></button>
+<button class="btn mx-1 div-align btn-dimention text-center" (click)="signOut()"><span
+    class="center bold font-white">Logout</span></button>
+
+<div class="jumbotron bg-transparent text-center overlay">
+  <div class="card text-center">
+    <table>
+      <tr>
+        <th>#</th>
+        <th>Detail</th>
+      </tr>
+      <tr>
+        <th>Name</th>
+        <td>{{userInfo.name}}</td>
+      </tr>
+      <tr>
+        <th>ID</th>
+        <td>{{userInfo.id}}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{userInfo.email}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
