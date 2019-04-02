@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'angularx-social-login';
 import { Router } from '@angular/router';
 import { DataService } from '../service/data.service';
+import { IUserDetails } from '../model/IUserDetail'
 
 @Component({
   selector: 'app-home',
@@ -10,28 +11,27 @@ import { DataService } from '../service/data.service';
 })
 export class HomeComponent implements OnInit {
 
-  response: any;
+  response: string;
 
   constructor(private authService: AuthService, private router: Router, private userInfo: DataService) { }
 
   ngOnInit() {
 
-    if (localStorage.getItem("1") == null ) {
+    if (localStorage.getItem("userId") == null) {
       this.router.navigate(['auth']);
     }
-    this.userInfo.getUserDetail(1).subscribe((data) => 
-    {
-      this.response = data;
-      console.log(data);
+    this.userInfo.getUser().subscribe((data) => {
+      this.response = JSON.stringify(data); 
+      console.log(this.response);
     });
   }
 
   signOut() {
     this.authService.signOut().then(() => {
-      localStorage.removeItem("1");
+      localStorage.removeItem("userId");
       this.router.navigate(['auth']);
     });
-    
+
   }
 
 }
