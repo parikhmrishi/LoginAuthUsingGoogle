@@ -26,15 +26,13 @@ export class HomeComponent implements OnInit {
     }
 
     this.userInfo = this.dataService.getData();
-    console.log(this.userInfo.id+" "+this.userInfo.name+" "+this.userInfo.email);
+    console.log(this.userInfo.id + " " + this.userInfo.name + " " + this.userInfo.email);
   }
 
   signOut() {
     this.authService.signOut().then(() => {
       localStorage.removeItem("userId");
       this.router.navigate(['auth']);
-      // this.userInfo.getUser().subscribe((data) =>
-      // console.log(data));
     });
 
   }

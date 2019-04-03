@@ -20,7 +20,7 @@ export class DataService {
     this.data = data;
   }
 
-  getData(){
+  getData() {
     let temp = this.data;
     return temp;
   }
@@ -35,15 +35,7 @@ export class DataService {
     this.response.email = email;
     this.response.roleId = roleId;
 
-    this.http.post('../assets/userDetail.json', this.response).subscribe(
-      (val) => {
-        console.log("POST call successful value returned in body",
-          val);
-      });
+    this.http.post('../assets/userDetail.json', { id: "foo", name: "loo" }).subscribe(res => console.log(res));
   }
 
-
-  // setData(userInfo): Observable<any> {
-  //   return this.http.get<userInfo>('http://127.0.0.1:8887/test.json')
-  // }
 }
